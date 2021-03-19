@@ -12,7 +12,7 @@
       <%= f.label :rating %>
       <%= f.text_field :rating %>
     </div>
-    <div id="content-body">
+    <div>
       <%= f.label :content_body %>
       <%= f.text_field :content_body %>
     </div>
@@ -20,6 +20,3 @@
   <% end %>
 </div>
 
-<div class="nav-link">
-  <%= link_to "Return to review", product_review_path(@product, @review) %>
-</div>

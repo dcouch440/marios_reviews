@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
 
 :root {
-  --plate-max-width: 70%;
+  --plate-max-width: 80%;
 }
 /* page setup */
 * {
@@ -10,13 +10,16 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
+
 }
 body {
+  display: flex;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
   background-color:rgb(255, 255, 255);
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.123);
@@ -24,8 +27,6 @@ body {
 #page-container {
   max-width: var(--plate-max-width);
   min-height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
 }
 /* titling */
 .titleize {
@@ -190,6 +191,14 @@ body {
   justify-content: space-around;
   width: 100%;
   font-size: 36px;
+}
+
+.home {
+  font-size: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .description {
