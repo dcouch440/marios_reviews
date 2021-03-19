@@ -20,18 +20,18 @@ class ReviewsController < ApplicationController
 
   def show
     @product = Product.find(params[:product_id])
-    @review = Song.find(params[:id])
+    @review = Review.find(params[:id])
     render :show
   end
 
   def edit
     @product = Product.find(params[:product_id])
-    @review = Song.find(params[:id])
+    @review = Review.find(params[:id])
     render :edit
   end
 
   def update
-    @review = Song.find(params[:id])
+    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to product_path(@review.product)
     else
@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Song.find(params[:id])
+    @review = Review.find(params[:id])
     @review.destroy
     redirect_to product_path(@review.product)
   end

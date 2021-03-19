@@ -3,7 +3,7 @@ class CreateProductsAndReviews < ActiveRecord::Migration[5.2]
     create_table :products do |t|
       t.column(:name, :string)
       t.column(:cost, :decimal)
-      t.column(:coo, :string)
+      t.column(:country_of_origin, :string)
 
       t.timestamp()
     end

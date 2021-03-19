@@ -1,15 +1,50 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+:root {
+  --plate-max-width: 80%;
+}
+/* page setup */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+#page-container {
+  max-width: var(--plate-max-width);
+  min-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* titling */
+.titleize {
+  width: 100%;
+  text-align: center;
+}
+.titleize {
+  font-size: 76px;
+}
+.center-content {
+  margin-left: 100%;
+  margin-right: 100%;
+}
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+  padding: 20px;
+  grid-auto-rows: minmax(200px, auto);
+}
+.card-wrapper > div
+.card-wrapper > div:nth-child(odd)  {
+  width: 100%;
+  height: 100%;
+  background:rgb(31, 31, 31);
+}
+.card-wrapper > div:nth-child(even)  {
+  width: 100%;
+  height: 100%;
+  background:rgb(87, 87, 87);
+}

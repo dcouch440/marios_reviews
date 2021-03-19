@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
   private
 
   def album_params
-    params.require(:product).permit(:name, :cost, :coo)
+    params.require(:product).permit(:name, :cost, :country_of_origin)
   end
 
 end

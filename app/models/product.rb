@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :cost, presence: true,
     :numericality => { :greater_than_or_equal_to => 0 }
-  validates :coo, presence: true
+  validates :country_of_origin, presence: true
 
   has_many :reviews, dependent: :destroy
 

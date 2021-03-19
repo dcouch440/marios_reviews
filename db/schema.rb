@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_174050) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "cost"
-    t.string "coo"
+    t.string "country_of_origin"
   end
 
   create_table "reviews", force: :cascade do |t|
