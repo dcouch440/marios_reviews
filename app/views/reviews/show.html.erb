@@ -1,2 +1,21 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class="titleize">Product: <%= @product.name %></div>
+
+<div class="view-container">
+  <p>Review: <%= @review.author %></p>
+  <p><%= @review.rating %></p>
+  <p><%= @review.content_body %></p>
+
+  <div class="change">
+    <div>
+      <%= link_to "Edit review", edit_product_review_path(@product, @review) %>
+    </div>
+    <div>
+      <%= link_to "Delete review", product_review_path(@product, @review),
+                            :data => {:confirm => "Are you sure?",
+                                          :method => "delete"} %>
+    </div>
+    <div>
+      <%= link_to "Return to product", product_path(@product) %>
+    </div>
+  </div>
+</div>

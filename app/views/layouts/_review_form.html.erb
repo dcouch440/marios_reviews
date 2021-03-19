@@ -1,0 +1,25 @@
+<div>
+  <%= render "layouts/errors", :object => @review %>
+</div>
+
+<div class="form">
+  <%= form_for [@product, @review] do |f| %>
+    <div>
+      <%= f.label :author %>
+      <%= f.text_field :author %>
+    </div>
+    <div>
+      <%= f.label :rating %>
+      <%= f.text_field :rating %>
+    </div>
+    <div id="content-body">
+      <%= f.label :content_body %>
+      <%= f.text_field :content_body %>
+    </div>
+    <%= f.submit :Submit %>
+  <% end %>
+</div>
+
+<%# <div class="nav-link"> %>
+  <%# <%= link_to "Return to review", review_path(@review) %>
+<%# </div> %>
