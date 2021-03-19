@@ -2,16 +2,15 @@
   <div class="title">Products</div>
 </div>
 
+<div class="new-link">
+    Add a Product? Sure : <%= link_to "Add One Here", new_product_path %>
+</div>
+
 <% if @products.any? %>
   <div class="card-wrapper">
     <% @products.each do |product| %>
       <div>
-        <div>
-          <div>
-            <%= link_to product.name, product_path(product) %>
-            <%= "$#{product.cost}" %>
-          </div>
-        </div>
+        <%= link_to product.name, product_path(product) %>
       </div>
     <% end %>
   </div>

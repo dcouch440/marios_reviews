@@ -1,2 +1,38 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+
+<div class="titleize">
+  <div class="title"><%= @product.name %></div>
+</div>
+
+<div class="description">
+  <div>$<%= @product.cost %></div>
+  <div><%= @product.country_of_origin %></div>
+</div>
+
+<% if @product.reviews.any? %>
+
+  <div>Here are the reviews for this product:</div>
+  <div class="wrapper-review">
+    <% @product.reviews.each do |review| %>
+      <div>
+        <div class="author-container">
+          <%= link_to review.author, product_review_path(@product, review) %>
+        </div>
+        <div class="rating-container">
+          <%= review.rating %> ⭐
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No reviews are listed for this product.</p>
+<% end %>
+
+
+<div class="title">
+  <div class="links">
+    <p><%= link_to "Add an review", new_product_review_path(@product) %></p>
+    <p><%= link_to "Edit product name", edit_product_path(@product) %></p>
+    <p><%= link_to "Delete product", product_path(@product), :data => {:confirm => "Are you sure?", :method => "delete"} %></p>
+    <p><%= link_to "Return to products", products_path %></p>
+  </div>
+</div>
