@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
-  get 'products/index'
-  get 'products/new'
-  get 'products/create'
-  get 'products/update'
-  get 'products/edit'
-  get 'products/show'
-  get 'products/create'
-  get 'products/destroy'
-  get 'products/new'
-  get 'products/create'
+  root to: 'pages#index'
+
   resources :products do
     resources :reviews
   end
