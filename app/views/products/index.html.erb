@@ -2,16 +2,14 @@
   <div class="title">Products</div>
 </div>
 
-<% if @products.try(:any?) %>
+<% if @products.any? %>
   <div class="card-wrapper">
     <% @products.each do |product| %>
       <div>
         <div>
-          <%= link_to product.name, recipe_path(recipe) %>
-        </div>
-        <div>
           <div>
-            <%= '$' + product.cost %>
+            <%= link_to product.name, product_path(product) %>
+            <%= "$#{product.cost}" %>
           </div>
         </div>
       </div>
