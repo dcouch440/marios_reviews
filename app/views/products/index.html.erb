@@ -9,8 +9,13 @@
 <% if @products.any? %>
   <div class="card-wrapper">
     <% @products.each do |product| %>
+
       <div>
-        <%= link_to product.name, product_path(product) %>
+          <a href="<%=product_path(product) %>">
+            <p><%= product.name %></p>
+            <p>Total Reviews: <%= product.reviews.count %></p>
+            <p>Average Reviews: <%= product.reviews.average(:rating) %></p>
+          </a>
       </div>
     <% end %>
   </div>
