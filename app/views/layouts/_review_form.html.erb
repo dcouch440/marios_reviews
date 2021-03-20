@@ -1,22 +1,30 @@
-<div>
-  <%= render "layouts/errors", :object => @review %>
-</div>
+<div class="form-page">
+  <div class="form-side">
+    <%= render "layouts/errors", :object => @review %>
 
-<div class="form">
-  <%= form_for [@product, @review] do |f| %>
-    <div>
-      <%= f.label :author %>
-      <%= f.text_field :author %>
+    <div class="form">
+      <%= form_for [@product, @review] do |f| %>
+        <div>
+          <%= f.label :author %>
+          <%= f.text_field :author %>
+        </div>
+        <div>
+          <%= f.label :rating %>
+          <%= f.text_field :rating %>
+        </div>
+        <div>
+          <%= f.label :content_body %>
+          <%= f.text_field :content_body %>
+        </div>
+        <%= f.submit :Submit %>
+      <% end %>
     </div>
-    <div>
-      <%= f.label :rating %>
-      <%= f.text_field :rating %>
+  </div>
+  <div class="info">
+    <div class="info-title">
+      Change the info!
     </div>
-    <div>
-      <%= f.label :content_body %>
-      <%= f.text_field :content_body %>
-    </div>
-    <%= f.submit :Submit %>
-  <% end %>
+    <p class="info-description">Integer sodales massa elit. Duis id tortor nec lacus consequat cursus eu vitae purus. Ut pretium mi eu neque tempus, et iaculis dui scelerisque. Nam in porttitor nisi. Vestibulum mollis rhoncus sapien ut ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam eget elit libero. Donec sed ultricies lacus, nec dictum nisl. Ut blandit in sapien vel lacinia. Integer vehicula tristique tortor, in ultrices est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla rhoncus neque non facilisis eleifend. Integer sollicitudin lorem sit amet velit imperdiet, condimentum blandit velit euismod. In hac habitasse platea dictumst. Nunc dapibus justo vel iaculis mattis. Sed in sem gravida leo efficitur fermentum sed sit amet sapien.</p>
+  </div>
 </div>
 

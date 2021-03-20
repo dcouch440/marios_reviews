@@ -1,10 +1,11 @@
 <div class="titleize">Product: <%= @product.name %></div>
 
 <div class="view-container">
-  <p>Review: <%= @review.author %></p>
-  <p><%= @review.rating %></p>
-  <p><%= @review.content_body %></p>
-
+  <div id="review-view-text">
+    <p>Review: <%= @review.author %></p>
+    <p><%= @review.rating %>  ⭐</p>
+    <p><%= @review.content_body %></p>
+  </div>
   <div class="change">
     <div>
       <%= link_to "Edit review", edit_product_review_path(@product, @review) %>
