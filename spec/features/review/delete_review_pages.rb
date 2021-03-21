@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "the delete review process" do
+
   it "deletes a review when commanded to" do
+
     @product = Product.new(
       name: "Dan Jones Mic's",
       cost: '225.00',
@@ -25,5 +27,6 @@ describe "the delete review process" do
 
     expect(page).to have_content 'Reviews'
     expect(page).to have_no_content 'Sam'
+
   end
 end

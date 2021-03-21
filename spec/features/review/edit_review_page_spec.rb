@@ -16,6 +16,7 @@ describe "the edit review process" do
 
     click_on "Dan Jones Mic's"
     click_on "Add an review"
+
     fill_in 'review_author', :with => 'Sam'
     fill_in 'review_rating', :with => '1'
     fill_in 'review_content_body', :with => 'Pretty bad'

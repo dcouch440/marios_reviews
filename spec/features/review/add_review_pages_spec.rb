@@ -40,6 +40,7 @@ describe "the add review process" do
     expect(page).to have_content "Author can't be blank"
     expect(page).to have_content "Rating can't be blank"
     expect(page).to have_content "Content body can't be blank"
+
   end
 
 end
