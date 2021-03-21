@@ -8,6 +8,11 @@ class Product < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
 
+  def calculate_average
+    return 0 unless reviews.size.positive?
+    reviews.average(:rating).to_f.round(1)
+  end
+
   private
   def titleize_album; self.name = self.name.titleize end;
 end

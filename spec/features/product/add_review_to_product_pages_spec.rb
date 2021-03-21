@@ -4,13 +4,11 @@ describe "the add review to product process" do
 
   it "adds a new review to a product" do
 
-    @product = Product.new(
+    @product = Product.create(
       name: "Dan Jones Mic's",
       cost: '225.00',
       country_of_origin: 'USA'
     )
-
-    @product.save
 
     visit '/products'
     click_link "Dan Jones Mic's"

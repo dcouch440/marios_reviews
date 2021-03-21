@@ -4,13 +4,11 @@ describe "the edit product process" do
 
   before :each do
 
-    @product = Product.new(
+    Product.create(
       name: "Dan Jones Mic's",
       cost: '225.00',
       country_of_origin: 'USA'
     )
-
-    @product.save
 
     visit '/products'
     click_on "Dan Jones Mic's"

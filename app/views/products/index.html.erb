@@ -14,7 +14,7 @@
           <a href="<%=product_path(product) %>">
             <p><%= product.name %></p>
             <p>Total Reviews: <%= product.reviews.count %></p>
-            <p><%= product.reviews.any? && "Average Review: #{product.reviews.average(:rating)}" %></p>
+            <p><%= product.reviews.any? && "Average Review: #{product.calculate_average}" %></p>
           </a>
       </div>
     <% end %>

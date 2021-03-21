@@ -4,26 +4,22 @@ context "statistics should be displayed" do
 
   before :each do
 
-    @product = Product.new(
+    @product = Product.create(
       name: 'Apple Ipad',
       cost: '129.99',
       country_of_origin: 'Usa'
     )
-
-    @product.save
 
   end
   scenario "if a product with 2 reviews exist, one being 5 stars and the other being 1 it should display the average and number of reviews" do
 
     [1,5].each do |score|
 
-      @product.reviews.new(
+      @product.reviews.create(
         author: 'Sam',
         rating: "#{score}",
         content_body: 'TEST',
       )
-
-      @product.save
 
     end
 
