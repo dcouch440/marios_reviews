@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Hind+Madurai&display=swap');
 :root {
-  --rich-blue: #F6AE2D;
+  --main-content-color: #F6AE2D;
   --global-float-shadow: 0px 5px 10px rgba(0, 0, 0, 0.322)
 }
 
@@ -93,6 +93,7 @@ a {
   cursor: pointer;
   color: rgb(0, 0, 0);
   text-decoration: none;
+  box-shadow: var(--global-float-shadow);
   border-radius: 10px;
   text-shadow: 0px 0px 1px rgb(255, 255, 255);
 }
@@ -104,18 +105,19 @@ a {
 .card-wrapper > div {
   width: 100%;
   height: 100%;
-  background: var(--rich-blue);
+  background: var(--main-content-color);
 }
 
 
 /* review display */
 .wrapper-review {
-  background: var(--rich-blue);
+  background: var(--main-content-color);
   border-radius: 20px;
   box-shadow:
     inset 0px 0px 5px rgba(255, 255, 255, 0.418),
     inset 0px 0px 14px rgb(0, 0, 0),
-    var(--global-float-shadow);
+    var(--global-float-shadow),
+    0px 5px 20px rgba(0, 0, 0, 0.233);
   border-radius: 15px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -177,6 +179,7 @@ a {
 
 /* forms */
 .form-page {
+  box-shadow: 0px 0px 5px black;
   display:flex;
   height: 100%;
   color: black;
@@ -188,7 +191,7 @@ a {
 .form-side {
   width: 100%;
   height: 100%;
-  background-color: var(--rich-blue);
+  background-color: var(--main-content-color);
 }
 .form {
   display: flex;
@@ -218,11 +221,19 @@ a {
   border-radius: 20px;
 }
 .form  button {
+  font-weight: 900;
   padding: 20px 40px;
   border-radius: 20px;
   color: white;
   border: 5px solid white;
   background-color: black;
+}
+.form  button:hover {
+  cursor: pointer;
+  background-color: white;
+  box-shadow: inset 0px 0px 2px black;
+  transition: .2s;
+  color: black;
 }
 .form textarea {
   resize: none;
@@ -277,6 +288,9 @@ a {
   padding: 20px 20px;
   border: 2px solid white;
   text-decoration: none;
+  box-shadow:
+  inset 0px 0px 5px black,
+  var(--global-float-shadow);
 }
 .change a:hover {
   background-color: rgb(255, 255, 255);
@@ -341,7 +355,7 @@ a {
   flex-direction: column;
   justify-content: center;
 }
-.info-title{
+.info-title {
   font-size: 46px;
   padding: 30px;
   height: 120px;
@@ -369,13 +383,15 @@ a {
   flex-direction: column;
   justify-content: center;
   font-family: 'Courier New', Courier, monospace;
-  box-shadow: inset 0px 0px 5px black;
+  box-shadow:
+    inset 0px 0px 5px black,
+    0px 5px 20px rgba(0, 0, 0, 0.527);
   text-shadow: 0px 0px 1px rgb(0, 0, 0);
   font-size: 35px;
   color: black;
   padding: 50px;
   height: 65vh;
-  background-color: var(--rich-blue);
+  background-color: var(--main-content-color);
 }
 #error {
   position: absolute !important;
