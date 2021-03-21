@@ -151,7 +151,12 @@ rails db:migrate
 
 * visit localhost:3000 to view the app
 
+## `Schema`
+<img src="public/img/schema_mario.PNG">
+  
 
+
+  
 ***
 The MIT License (MIT)
 
