@@ -4,7 +4,7 @@ describe "the add review process" do
 
   before :each do
 
-    @product = Product.create(
+    Product.create(
       name: "Dan Jones Mic's",
       cost: '225.00',
       country_of_origin: 'USA'

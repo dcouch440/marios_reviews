@@ -17,7 +17,7 @@ describe "home page view statistics" do
 
     (1..10).each do |interval|
 
-      @product = Product.create(
+      product = Product.create(
         name: "TEST #{interval}",
         cost: '225.00',
         country_of_origin: 'USA'
@@ -25,7 +25,7 @@ describe "home page view statistics" do
 
       (1..10).each do |interval|
 
-        @product.reviews.create(
+        product.reviews.create(
           author: "TEST #{interval}",
           rating: "1",
           content_body: 'TEST',

@@ -4,7 +4,7 @@ describe "the delete review process" do
 
   it "deletes a review when commanded to" do
 
-    @product = Product.create(
+    Product.create(
       name: "Dan Jones Mic's",
       cost: '225.00',
       country_of_origin: 'USA'

@@ -4,7 +4,15 @@
   <div id="review-view-text">
     <p id="review-author">Review: <%= @review.author %></p>
     <div id="review-review">
-      <p id="review-rating"><%= @review.rating %>  ⭐</p>
+      <p id="review-rating">
+      <% (1..5).each do |int| %>
+          <% if @review.rating.to_i >= int %>
+            ⭐
+          <% else %>
+            ★
+          <% end %>
+      <%end%>
+      </p>
       <p><%= @review.content_body %></p>
     </div>
   </div>
