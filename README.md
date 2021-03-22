@@ -16,7 +16,10 @@ Requirements for reviews include: Author, Content Body, Rating.
 
 * Ruby `2.6.6`
 * Rails `6.1.3`
-* React
+* Html
+* Css
+* Flex Box
+* Css Grid
 * Embedded Ruby
 * PostgreSQL
 * Bundler
@@ -25,7 +28,6 @@ Requirements for reviews include: Author, Content Body, Rating.
 * capybara
 * Pry
 * ByeBug
-* HTML
 * git
 
 
@@ -124,7 +126,7 @@ Setup postgresql for rails
   pg_database_password: add password here
 ```
 
-* Then inside the database.yml (see description above) add
+* Then inside the database.yml (see description above) add (or uncomment)
 
 ```
   username: <%= Rails.application.credentials.pg_database_username %>
