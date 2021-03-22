@@ -15,7 +15,7 @@ Requirements for reviews include: Author, Content Body, Rating.
 ### `Technology Used:`
 
 * Ruby `2.6.6`
-* Rails `6.1.3`
+* Rails `5.2.0`
 * Html
 * Css
 * Flex Box
