@@ -36,7 +36,6 @@ describe "the edit product process" do
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Cost can't be blank"
     expect(page).to have_content "Country of origin can't be blank"
-
     expect(page).to have_content "Name can't be blank"
 
   end
