@@ -44,6 +44,7 @@ group :development, :test do
   gem 'faker'
   gem 'simplecov', require: false
   gem 'capybara'
+  gem "factory_bot_rails"
 end
 
 group :development do

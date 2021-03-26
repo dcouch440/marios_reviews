@@ -14,6 +14,7 @@ end
 describe "home page view statistics" do
 
   scenario "the user should see the total reviews and products from the front page" do
+    Bot.make
 
     (1..10).each do |interval|
 
@@ -29,6 +30,7 @@ describe "home page view statistics" do
           author: "TEST #{interval}",
           rating: "1",
           content_body: 'TEST',
+          user_id: Bot.user.id
         )
 
       end

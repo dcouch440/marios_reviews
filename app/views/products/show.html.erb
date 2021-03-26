@@ -28,11 +28,9 @@
 
   <div class="change">
 
-    <% if current_user || (current_user&.admin) %>
-      <div>
-        <%= link_to "Add an review", new_product_review_path(@product) %>
-      </div>
-    <% end %>
+    <div>
+      <%= link_to "Add an review", new_product_review_path(@product) %>
+    </div>
 
     <% if current_user&.admin %>
 
