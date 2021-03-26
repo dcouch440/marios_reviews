@@ -25,10 +25,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'faker'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'devise'
+gem 'rails_admin', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -41,6 +41,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'pry'
+  gem 'faker'
+  gem 'simplcov', require: false
   gem 'capybara'
 end
 

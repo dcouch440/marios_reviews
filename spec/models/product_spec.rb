@@ -16,6 +16,7 @@ describe Product do
         cost: 5,
         country_of_origin: 'Spain'
       })
+
       expect(product.name()).to(eq("Soup Apples"))
 
     end
