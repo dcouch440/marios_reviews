@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  before_action except: %i[ index show ] do
+    redirect_to products_path unless current_user&.admin
+  end
+
   def index
     @products = Product.all
     render :index

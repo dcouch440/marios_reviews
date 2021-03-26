@@ -10,8 +10,10 @@ class ReviewsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    byebug
+
     @review = @product.reviews.new(review_params)
+    @review.user_id = current_user.id
+
     if @review.save
       redirect_to product_path(@product)
     else
@@ -33,17 +35,27 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update(review_params)
-      redirect_to product_path(@review.product)
+
+    if @review.user.id !== user.id
+
+      if @review.update(review_params)
+        redirect_to product_path(@review.product)
+      else
+        @product = Product.find(params[:product_id])
+        render :edit
+      end
+
     else
-      @product = Product.find(params[:product_id])
-      render :edit
+
+      redirect_to products_path
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
-    @review.destroy
+    if @review.user_id == current_user&.id
+      @review.destroy
+    end
     redirect_to product_path(@review.product)
   end
 
