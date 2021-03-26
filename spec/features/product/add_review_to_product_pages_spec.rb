@@ -5,8 +5,8 @@ describe "the add review to product process" do
   before :each do
     Bot.make
     visit '/users/sign_in'
-    fill_in 'user_email', with: 'user@user.com'
-    fill_in 'user_password', with: 'asdasdasd'
+    fill_in 'user_email', with: Bot.user[:email]
+    fill_in 'user_password', with: Bot.user[:password]
     click_on 'Log in'
   end
 

@@ -30,7 +30,7 @@ describe "home page view statistics" do
           author: "TEST #{interval}",
           rating: "1",
           content_body: 'TEST',
-          user_id: Bot.user.id
+          user_id: Bot.user[:id]
         )
 
       end

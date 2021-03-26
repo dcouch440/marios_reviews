@@ -16,11 +16,21 @@ module Bot
   end
 
   def self.admin
-    User.where(email: 'admin@admin.com').first
+    admin = User.first
+    {
+      id: admin.id,
+      email: admin.email,
+      password: 'asdasdasd'
+    }
   end
 
   def self.user
-    user = User.where(email: 'user@user.com').first
+    user = User.last
+    {
+      id: user.id,
+      email: user.email,
+      password: 'asdasdasd'
+    }
   end
 
 end

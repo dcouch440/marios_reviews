@@ -6,8 +6,8 @@ describe "the view product path" do
     Bot.make
 
     visit '/users/sign_in'
-    fill_in 'user_email', with: 'user@user.com'
-    fill_in 'user_password', with: 'asdasdasd'
+    fill_in 'user_email', with: Bot.user[:email]
+    fill_in 'user_password', with: Bot.user[:password]
     click_on 'Log in'
 
     @product = Product.create(
@@ -23,7 +23,7 @@ describe "the view product path" do
       author: "TEST",
       rating: "1",
       content_body: 'TEST',
-      user_id: Bot.user.id
+      user_id: Bot.user[:id]
     )
 
     visit "/products/#{@product.id}/reviews/#{review.id}"
@@ -38,7 +38,7 @@ describe "the view product path" do
       author: "TEST",
       rating: "5",
       content_body: 'TEST',
-      user_id: Bot.user.id
+      user_id: Bot.user[:id]
     )
 
     visit "/products/#{@product.id}/reviews/#{review.id}"

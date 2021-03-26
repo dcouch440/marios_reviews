@@ -1,13 +1,19 @@
 require 'rails_helper'
 
-describe "the user login process" do
+describe "the user sign up process" do
 
-  scenario "if a user is not logged in they should be able to navigate to the log in page from the nav bar" do
+  scenario "the user should be able to sign up from the nav bar" do
 
     visit '/'
-    click_on 'sign-up'
+    click_on 'Sign up'
 
-    expect(page).to have_content 'Password confirmation'
+    fill_in 'user_email', with: 'user1@user.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    fill_in 'user_password_confirmation', with: 'asdasdasd'
+    click_button 'Sign up'
+
+    expect(page).to have_content 'Welcome user1@user.com'
+
   end
-  ggi
+
 end

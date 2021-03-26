@@ -7,8 +7,8 @@ describe "the admin edit review process" do
     Bot.make
 
     visit '/users/sign_in'
-    fill_in 'user_email', with: 'admin@admin.com'
-    fill_in 'user_password', with: 'asdasdasd'
+    fill_in 'user_email', with: Bot.admin[:email]
+    fill_in 'user_password', with: Bot.admin[:password]
     click_on 'Log in'
 
     Product.create(

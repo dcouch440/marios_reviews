@@ -25,7 +25,7 @@ context "statistics should be displayed" do
         author: 'Sam',
         rating: "#{score}",
         content_body: 'TEST',
-        user_id: Bot.user.id
+        user_id: Bot.user[:id]
       )
 
     end
