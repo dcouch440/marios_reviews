@@ -9,7 +9,6 @@
 <% if @products.any? %>
   <div class="card-wrapper">
     <% @products.each do |product| %>
-
       <div>
           <a href="<%=product_path(product) %>">
             <p><%= product.name %></p>
