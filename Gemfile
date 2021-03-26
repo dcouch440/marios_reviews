@@ -42,7 +42,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'faker'
-  gem 'simplcov', require: false
+  gem 'simplecov', require: false
   gem 'capybara'
 end
 
