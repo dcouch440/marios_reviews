@@ -28,8 +28,14 @@
 
   <div class="change">
     <div><%= link_to "Add an review", new_product_review_path(@product) %></div>
-    <div><%= link_to "Edit product name", edit_product_path(@product) %></div>
-    <div><%= link_to "Delete product", product_path(@product), :data => {:confirm => "Are you sure?", :method => "delete"} %></div>
+    <% if current_user&.admin %>
+      <div>
+        <%= link_to "Edit product name", edit_product_path(@product) %>
+      </div>
+      <div>
+        <%= link_to "Delete product", product_path(@product), :data => {:confirm =>  "Are you sure?", :method => "delete"} %>
+      </div>
+    <% end %>
     <div><%= link_to "Return to products", products_path %></div>
   </div>
 </div>

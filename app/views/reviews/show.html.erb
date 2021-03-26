@@ -17,14 +17,16 @@
     </div>
   </div>
   <div class="change">
-    <div>
-      <%= link_to "Edit review", edit_product_review_path(@product, @review) %>
-    </div>
-    <div>
-      <%= link_to "Delete review", product_review_path(@product, @review),
-                            :data => {:confirm => "Are you sure?",
-                                          :method => "delete"} %>
-    </div>
+    <% if current_user&.admin %>
+      <div>
+        <%= link_to "Edit review", edit_product_review_path(@product, @review) %>
+      </div>
+      <div>
+        <%= link_to "Delete review", product_review_path(@product, @review),
+                              :data => {:confirm => "Are you sure?",
+                                            :method => "delete"} %>
+      </div>
+    <% end %>
     <div>
       <%= link_to "Return to product", product_path(@product) %>
     </div>
