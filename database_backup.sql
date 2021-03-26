@@ -78,7 +78,8 @@ CREATE TABLE public.reviews (
     author character varying,
     content_body character varying,
     rating integer,
-    product_id integer
+    product_id integer,
+    user_id integer
 );
 
 
@@ -117,6 +118,46 @@ CREATE TABLE public.schema_migrations (
 ALTER TABLE public.schema_migrations OWNER TO "HB";
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: HB
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    admin boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO "HB";
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: HB
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO "HB";
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: HB
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
 -- Name: products id; Type: DEFAULT; Schema: public; Owner: HB
 --
 
@@ -128,6 +169,13 @@ ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.pro
 --
 
 ALTER TABLE ONLY public.reviews ALTER COLUMN id SET DEFAULT nextval('public.reviews_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: HB
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
@@ -144,56 +192,56 @@ environment	development	2021-03-19 19:42:50.486465	2021-03-19 19:42:50.486465
 --
 
 COPY public.products (id, name, cost, country_of_origin) FROM stdin;
-211	Durable Marble Gloves	100.02	Jersey
-212	Practical Plastic Bottle	282.0	Sierra Leone
-213	Enormous Marble Table	159.66	Nepal
-214	Fantastic Plastic Bench	87.14	Guinea
-215	Incredible Cotton Shirt	160.47	French Guiana
-216	Ergonomic Linen Pants	124.2	Paraguay
-217	Ergonomic Aluminum Knife	107.38	Malaysia
-218	Intelligent Rubber Keyboard	2.13	Maldives
-219	Heavy Duty Copper Hat	284.89	Mauritius
-220	Ergonomic Bronze Watch	217.91	Congo
-221	Aerodynamic Silk Gloves	251.5	Romania
-222	Enormous Aluminum Shirt	40.07	Pitcairn Islands
-223	Ergonomic Granite Bottle	207.33	Uruguay
-224	Enormous Granite Computer	218.55	Australia
-225	Sleek Iron Clock	71.89	Montenegro
-226	Lightweight Leather Hat	143.66	Madagascar
-227	Fantastic Concrete Knife	85.65	Madagascar
-228	Enormous Linen Car	135.78	Brazil
-229	Lightweight Silk Bench	42.67	Poland
-230	Sleek Copper Shoes	215.85	Libyan Arab Jamahiriya
-231	Sleek Copper Keyboard	88.48	Solomon Islands
-232	Intelligent Copper Keyboard	214.79	Guinea-Bissau
-233	Aerodynamic Leather Pants	73.4	Cocos (Keeling) Islands
-234	Ergonomic Wooden Pants	277.63	Timor-Leste
-235	Sleek Paper Computer	13.65	Bermuda
-236	Rustic Aluminum Plate	9.83	Hong Kong
-237	Aerodynamic Linen Shoes	135.09	Algeria
-238	Lightweight Plastic Shoes	276.12	Saint Pierre and Miquelon
-239	Sleek Marble Table	130.32	Armenia
-240	Aerodynamic Leather Bottle	64.52	British Indian Ocean Territory (Chagos Archipelago)
-241	Durable Silk Keyboard	136.88	Switzerland
-242	Fantastic Wooden Wallet	233.24	Heard Island and McDonald Islands
-243	Incredible Bronze Shoes	179.22	Bahrain
-244	Awesome Granite Pants	48.03	Saint Martin
-245	Mediocre Steel Gloves	232.18	Algeria
-246	Small Aluminum Car	254.53	Wallis and Futuna
-247	Mediocre Concrete Knife	196.15	Saint Barthelemy
-248	Small Leather Clock	222.98	Bermuda
-249	Sleek Paper Bag	256.53	Bolivia
-250	Practical Aluminum Chair	290.43	Barbados
-251	Mediocre Concrete Table	93.32	Solomon Islands
-252	Fantastic Linen Coat	9.08	Tajikistan
-253	Sleek Plastic Watch	239.7	Croatia
-254	Aerodynamic Linen Keyboard	118.84	Kazakhstan
-255	Fantastic Wool Chair	80.46	Malaysia
-256	Enormous Leather Bench	0.33	Mauritania
-257	Gorgeous Concrete Gloves	139.04	Armenia
-258	Aerodynamic Steel Table	146.03	Gambia
-259	Awesome Iron Watch	181.09	French Polynesia
-260	Ergonomic Leather Wallet	166.56	Niger
+368	Fantastic Steel Gloves	43.27	Congo
+369	Durable Bronze Bench	227.95	Mauritius
+370	Heavy Duty Marble Pants	5.25	France
+371	Mediocre Cotton Gloves	196.67	Turks and Caicos Islands
+372	Intelligent Concrete Hat	109.13	Gabon
+373	Awesome Wool Bag	123.11	Cote d'Ivoire
+374	Intelligent Cotton Clock	117.85	Kazakhstan
+375	Synergistic Bronze Bench	99.07	Haiti
+376	Awesome Cotton Plate	164.74	Austria
+377	Heavy Duty Leather Chair	263.56	Madagascar
+378	Lightweight Leather Table	43.12	Peru
+379	Practical Steel Watch	209.03	Austria
+380	Aerodynamic Silk Shirt	246.0	Maldives
+381	Practical Concrete Wallet	140.74	Falkland Islands (Malvinas)
+382	Mediocre Iron Shirt	115.81	Saudi Arabia
+383	Enormous Plastic Plate	107.97	Cameroon
+384	Incredible Bronze Chair	134.73	United States of America
+385	Practical Copper Knife	228.12	Japan
+386	Enormous Paper Coat	81.47	Pitcairn Islands
+387	Gorgeous Granite Shirt	67.14	Thailand
+388	Practical Leather Keyboard	251.09	Yemen
+389	Ergonomic Cotton Watch	4.01	Philippines
+390	Fantastic Aluminum Computer	202.87	Ecuador
+391	Durable Leather Bag	291.73	French Polynesia
+392	Ergonomic Wooden Wallet	225.89	Senegal
+393	Awesome Concrete Pants	101.46	China
+394	Durable Aluminum Bag	59.63	Moldova
+395	Heavy Duty Paper Gloves	72.09	Guadeloupe
+396	Durable Marble Lamp	275.54	Lithuania
+397	Intelligent Bronze Bottle	0.37	Tokelau
+398	Heavy Duty Silk Shoes	72.44	Falkland Islands (Malvinas)
+399	Incredible Steel Plate	295.76	Kiribati
+400	Rustic Marble Chair	96.46	Kiribati
+401	Rustic Linen Plate	128.25	Montserrat
+402	Enormous Cotton Plate	186.87	Colombia
+403	Ergonomic Silk Watch	42.66	Mauritius
+404	Intelligent Bronze Bag	107.64	Montserrat
+405	Small Steel Coat	113.0	United Arab Emirates
+406	Enormous Cotton Table	230.28	Seychelles
+407	Durable Copper Bench	141.89	Costa Rica
+408	Durable Plastic Knife	239.55	Ghana
+409	Practical Leather Watch	287.88	New Caledonia
+410	Awesome Copper Clock	250.15	Belgium
+411	Rustic Paper Bag	114.61	United Kingdom
+412	Ergonomic Bronze Gloves	281.85	Vanuatu
+413	Gorgeous Wool Computer	242.66	British Indian Ocean Territory (Chagos Archipelago)
+414	Mediocre Wooden Hat	141.36	Montserrat
+415	Awesome Cotton Wallet	148.78	Saint Pierre and Miquelon
+416	Intelligent Linen Plate	191.65	Cook Islands
+417	Small Marble Watch	107.97	Samoa
 \.
 
 
@@ -201,257 +249,257 @@ COPY public.products (id, name, cost, country_of_origin) FROM stdin;
 -- Data for Name: reviews; Type: TABLE DATA; Schema: public; Owner: HB
 --
 
-COPY public.reviews (id, author, content_body, rating, product_id) FROM stdin;
-1002	Rev. Wilbert Murazik	AMAZING! Oh Joy! What A Treat!	5	211
-1003	Jenny Hintz	AMAZING! Oh Joy! What A Treat!	5	211
-1004	Rep. Kit Padberg	It was not the worst but I found it to be pretty bad.	2	211
-1005	Chastity Gerlach	Actually pretty good, would buy again.	4	211
-1006	Mrs. Steve White	Decent but not the best.	3	211
-1007	Beverlee Ruecker	Actually pretty good, would buy again.	4	212
-1008	Junior Nitzsche Sr.	Decent but not the best.	3	212
-1009	Samara Doyle DO	It was not the worst but I found it to be pretty bad.	2	212
-1010	Blaine Monahan	TERRIBLE! DO NOT BUY!	1	212
-1011	Annamae Borer	Actually pretty good, would buy again.	4	212
-1012	Glen Muller	TERRIBLE! DO NOT BUY!	1	213
-1013	Deena Rosenbaum	Decent but not the best.	3	213
-1014	Evan Sporer PhD	Actually pretty good, would buy again.	4	213
-1015	Cody Bayer	TERRIBLE! DO NOT BUY!	1	213
-1016	Lucien Padberg	Decent but not the best.	3	213
-1017	Hailey Wolf	AMAZING! Oh Joy! What A Treat!	5	214
-1018	Shiloh Nolan	TERRIBLE! DO NOT BUY!	1	214
-1019	Jospeh Feest	TERRIBLE! DO NOT BUY!	1	214
-1020	Dona Konopelski	Actually pretty good, would buy again.	4	214
-1021	Dannielle Heller	Decent but not the best.	3	214
-1022	Edward Schmitt VM	It was not the worst but I found it to be pretty bad.	2	215
-1023	Jefferson Hauck	Actually pretty good, would buy again.	4	215
-1024	Jody Jacobson	Decent but not the best.	3	215
-1025	Anita Bergnaum	Decent but not the best.	3	215
-1026	Paul Cormier	AMAZING! Oh Joy! What A Treat!	5	215
-1027	Prof. Sherie Thompson	TERRIBLE! DO NOT BUY!	1	216
-1028	Sen. Claud Kirlin	Decent but not the best.	3	216
-1029	Lazaro Schmidt PhD	Actually pretty good, would buy again.	4	216
-1030	Msgr. Williemae Jerde	It was not the worst but I found it to be pretty bad.	2	216
-1031	Domingo Hudson	Decent but not the best.	3	216
-1032	Elissa Mills	Actually pretty good, would buy again.	4	217
-1033	Pres. Israel Jaskolski	It was not the worst but I found it to be pretty bad.	2	217
-1034	Kiyoko Hodkiewicz	TERRIBLE! DO NOT BUY!	1	217
-1035	Cathryn Veum VM	It was not the worst but I found it to be pretty bad.	2	217
-1036	The Hon. Benedict Wintheiser	AMAZING! Oh Joy! What A Treat!	5	217
-1037	Emmitt Conroy	Decent but not the best.	3	218
-1038	Miss Ira Schulist	Actually pretty good, would buy again.	4	218
-1039	Jake Beier	It was not the worst but I found it to be pretty bad.	2	218
-1040	Zachary Cormier	Decent but not the best.	3	218
-1041	Alonzo Daniel Sr.	AMAZING! Oh Joy! What A Treat!	5	218
-1042	Modesto Lindgren Esq.	It was not the worst but I found it to be pretty bad.	2	219
-1043	Arlen Ritchie	AMAZING! Oh Joy! What A Treat!	5	219
-1044	Venita McCullough DC	AMAZING! Oh Joy! What A Treat!	5	219
-1045	Lorna Oberbrunner	TERRIBLE! DO NOT BUY!	1	219
-1046	Lavonia Kutch	Actually pretty good, would buy again.	4	219
-1047	Erick McGlynn	Decent but not the best.	3	220
-1048	Jami Hermiston	Decent but not the best.	3	220
-1049	Dreama Nader	It was not the worst but I found it to be pretty bad.	2	220
-1050	Erik Breitenberg	TERRIBLE! DO NOT BUY!	1	220
-1051	Korey Rath PhD	AMAZING! Oh Joy! What A Treat!	5	220
-1052	The Hon. Camellia Prohaska	Actually pretty good, would buy again.	4	221
-1053	Ali Lind VM	TERRIBLE! DO NOT BUY!	1	221
-1054	Corey Strosin	AMAZING! Oh Joy! What A Treat!	5	221
-1055	Hobert Fahey	It was not the worst but I found it to be pretty bad.	2	221
-1056	Everett Batz	Decent but not the best.	3	221
-1057	Sterling Zieme	Decent but not the best.	3	222
-1058	Kaci Ankunding	Decent but not the best.	3	222
-1059	Stanton Brown	It was not the worst but I found it to be pretty bad.	2	222
-1060	Ralph Rohan	AMAZING! Oh Joy! What A Treat!	5	222
-1061	Edgar Kunze	It was not the worst but I found it to be pretty bad.	2	222
-1062	Miss Samella Hessel	AMAZING! Oh Joy! What A Treat!	5	223
-1063	Lizette Walter	It was not the worst but I found it to be pretty bad.	2	223
-1064	Sen. Ila Daniel	AMAZING! Oh Joy! What A Treat!	5	223
-1065	Samara Parker	Decent but not the best.	3	223
-1066	Talia Stoltenberg II	It was not the worst but I found it to be pretty bad.	2	223
-1067	Ara Stokes	AMAZING! Oh Joy! What A Treat!	5	224
-1068	Robyn Christiansen	Actually pretty good, would buy again.	4	224
-1069	Msgr. Ozzie Russel	Actually pretty good, would buy again.	4	224
-1070	Earle Koelpin VM	TERRIBLE! DO NOT BUY!	1	224
-1071	The Hon. Juliane Gislason	TERRIBLE! DO NOT BUY!	1	224
-1072	Hung Willms	Actually pretty good, would buy again.	4	225
-1073	Howard Predovic	Actually pretty good, would buy again.	4	225
-1074	Ruth Toy	It was not the worst but I found it to be pretty bad.	2	225
-1075	Paul Becker	AMAZING! Oh Joy! What A Treat!	5	225
-1076	Kraig Labadie	TERRIBLE! DO NOT BUY!	1	225
-1077	Ms. Suzan McDermott	AMAZING! Oh Joy! What A Treat!	5	226
-1078	Chadwick Larkin	AMAZING! Oh Joy! What A Treat!	5	226
-1079	Morton Lowe	Decent but not the best.	3	226
-1080	Ricardo Kautzer	TERRIBLE! DO NOT BUY!	1	226
-1081	Sharron Stiedemann	Decent but not the best.	3	226
-1082	Shondra Gutmann	It was not the worst but I found it to be pretty bad.	2	227
-1083	Fr. Marielle Heller	TERRIBLE! DO NOT BUY!	1	227
-1084	Marion Bailey	TERRIBLE! DO NOT BUY!	1	227
-1085	Jesusa Pacocha	TERRIBLE! DO NOT BUY!	1	227
-1086	Jeanna Krajcik	AMAZING! Oh Joy! What A Treat!	5	227
-1087	Rep. Jere Kiehn	Decent but not the best.	3	228
-1088	Mia Hintz	AMAZING! Oh Joy! What A Treat!	5	228
-1089	Clyde Boehm	It was not the worst but I found it to be pretty bad.	2	228
-1090	Chuck Kirlin	Actually pretty good, would buy again.	4	228
-1091	Edna Gerlach	Decent but not the best.	3	228
-1092	Marilou Collier	It was not the worst but I found it to be pretty bad.	2	229
-1093	Annemarie Mosciski	AMAZING! Oh Joy! What A Treat!	5	229
-1094	Nolan Denesik	TERRIBLE! DO NOT BUY!	1	229
-1095	Ligia Huel	TERRIBLE! DO NOT BUY!	1	229
-1096	Pearle Bogisich	TERRIBLE! DO NOT BUY!	1	229
-1097	Karlene Fadel	It was not the worst but I found it to be pretty bad.	2	230
-1098	Dave Becker	AMAZING! Oh Joy! What A Treat!	5	230
-1099	Miss Romona Batz	AMAZING! Oh Joy! What A Treat!	5	230
-1100	Jean Nitzsche	Decent but not the best.	3	230
-1101	Lindsey Hodkiewicz	It was not the worst but I found it to be pretty bad.	2	230
-1102	Louis Legros	It was not the worst but I found it to be pretty bad.	2	231
-1103	Cristin Yost	AMAZING! Oh Joy! What A Treat!	5	231
-1104	Kelsi Walter	Decent but not the best.	3	231
-1105	Lourdes Lueilwitz	AMAZING! Oh Joy! What A Treat!	5	231
-1106	Heriberto Abernathy	AMAZING! Oh Joy! What A Treat!	5	231
-1107	Denese Hermiston	It was not the worst but I found it to be pretty bad.	2	232
-1108	Rory Howe	Decent but not the best.	3	232
-1109	Marcelle Mayert	Actually pretty good, would buy again.	4	232
-1110	Amb. Doloris Schulist	It was not the worst but I found it to be pretty bad.	2	232
-1111	Candi Kling	TERRIBLE! DO NOT BUY!	1	232
-1112	Alex Lind	TERRIBLE! DO NOT BUY!	1	233
-1113	Dewey Senger	TERRIBLE! DO NOT BUY!	1	233
-1114	Lucius Murray Ret.	Decent but not the best.	3	233
-1115	Amb. Lloyd Rempel	Decent but not the best.	3	233
-1116	Chanell Rogahn	It was not the worst but I found it to be pretty bad.	2	233
-1117	Efrain Nitzsche	Actually pretty good, would buy again.	4	234
-1118	Dee White DC	TERRIBLE! DO NOT BUY!	1	234
-1119	Chelsea Kertzmann II	TERRIBLE! DO NOT BUY!	1	234
-1120	Louetta Ankunding	It was not the worst but I found it to be pretty bad.	2	234
-1121	Walter Lakin IV	AMAZING! Oh Joy! What A Treat!	5	234
-1122	Delisa Mitchell	Actually pretty good, would buy again.	4	235
-1123	Royal Schmeler	TERRIBLE! DO NOT BUY!	1	235
-1124	Windy Powlowski	Actually pretty good, would buy again.	4	235
-1125	Nichelle Pfeffer	AMAZING! Oh Joy! What A Treat!	5	235
-1126	Jarvis Casper Jr.	TERRIBLE! DO NOT BUY!	1	235
-1127	The Hon. Gerry Kozey	Actually pretty good, would buy again.	4	236
-1128	Prof. Michaele Strosin	Decent but not the best.	3	236
-1129	Ellsworth Koelpin	TERRIBLE! DO NOT BUY!	1	236
-1130	Lonnie DuBuque Jr.	Actually pretty good, would buy again.	4	236
-1131	Glenn Hirthe	Decent but not the best.	3	236
-1132	Huong Hoeger	TERRIBLE! DO NOT BUY!	1	237
-1133	Terry Skiles JD	Actually pretty good, would buy again.	4	237
-1134	Fausto Yost	AMAZING! Oh Joy! What A Treat!	5	237
-1135	Morton Walsh DVM	Decent but not the best.	3	237
-1136	Mario Blanda	TERRIBLE! DO NOT BUY!	1	237
-1137	Clifton Herzog	Decent but not the best.	3	238
-1138	Melita Quigley	Actually pretty good, would buy again.	4	238
-1139	Miguel Ledner	Decent but not the best.	3	238
-1140	Kira Kris	TERRIBLE! DO NOT BUY!	1	238
-1141	Bernice McGlynn	It was not the worst but I found it to be pretty bad.	2	238
-1142	German Bartell CPA	Actually pretty good, would buy again.	4	239
-1143	Chantal Sanford	Actually pretty good, would buy again.	4	239
-1144	Blair Bogisich	AMAZING! Oh Joy! What A Treat!	5	239
-1145	Rigoberto Lakin	Actually pretty good, would buy again.	4	239
-1146	Agueda Shields	Actually pretty good, would buy again.	4	239
-1147	Rodger Blanda Sr.	TERRIBLE! DO NOT BUY!	1	240
-1148	Buffy Kling Ret.	TERRIBLE! DO NOT BUY!	1	240
-1149	Merideth Green DC	Decent but not the best.	3	240
-1150	Taisha Frami	Actually pretty good, would buy again.	4	240
-1151	Darlena Gusikowski	TERRIBLE! DO NOT BUY!	1	240
-1152	Lorenza Morissette	AMAZING! Oh Joy! What A Treat!	5	241
-1153	Terrilyn Ritchie	Decent but not the best.	3	241
-1154	The Hon. Cara Ullrich	Decent but not the best.	3	241
-1155	Gov. Lilliana Powlowski	AMAZING! Oh Joy! What A Treat!	5	241
-1156	Winfred Goldner	Decent but not the best.	3	241
-1157	Sen. Clemente Krajcik	It was not the worst but I found it to be pretty bad.	2	242
-1158	Arnulfo Wintheiser	Actually pretty good, would buy again.	4	242
-1159	Laine McCullough	It was not the worst but I found it to be pretty bad.	2	242
-1160	Julio Terry	Decent but not the best.	3	242
-1161	Marisha Hagenes	Actually pretty good, would buy again.	4	242
-1162	Sen. Magdalene Mann	It was not the worst but I found it to be pretty bad.	2	243
-1163	The Hon. Magan Haley	Actually pretty good, would buy again.	4	243
-1164	Gov. Rea Dietrich	AMAZING! Oh Joy! What A Treat!	5	243
-1165	Gus O'Conner JD	AMAZING! Oh Joy! What A Treat!	5	243
-1166	Brigid Hills	Actually pretty good, would buy again.	4	243
-1167	Cassie Batz	Actually pretty good, would buy again.	4	244
-1168	Ellen Crist	TERRIBLE! DO NOT BUY!	1	244
-1169	Altha West DVM	Decent but not the best.	3	244
-1170	Johnathon Schamberger	Decent but not the best.	3	244
-1171	Trent Mertz	AMAZING! Oh Joy! What A Treat!	5	244
-1172	Reynaldo Torphy	Decent but not the best.	3	245
-1173	Erica O'Kon	It was not the worst but I found it to be pretty bad.	2	245
-1174	Emmanuel Mayert	It was not the worst but I found it to be pretty bad.	2	245
-1175	Oleta Shanahan	Decent but not the best.	3	245
-1176	The Hon. Ernesto Borer	TERRIBLE! DO NOT BUY!	1	245
-1177	Dominic Jaskolski	TERRIBLE! DO NOT BUY!	1	246
-1178	Travis Vandervort	TERRIBLE! DO NOT BUY!	1	246
-1179	Delores Hackett MD	It was not the worst but I found it to be pretty bad.	2	246
-1180	Huey Weissnat	Actually pretty good, would buy again.	4	246
-1181	Adolfo Lubowitz Ret.	TERRIBLE! DO NOT BUY!	1	246
-1182	Lonny Schultz	It was not the worst but I found it to be pretty bad.	2	247
-1183	Joe Quitzon	Decent but not the best.	3	247
-1184	Jorge Schroeder	Actually pretty good, would buy again.	4	247
-1185	Mayra Nader	TERRIBLE! DO NOT BUY!	1	247
-1186	Stephine Price	TERRIBLE! DO NOT BUY!	1	247
-1187	Lino Crooks III	AMAZING! Oh Joy! What A Treat!	5	248
-1188	Esteban Klein	AMAZING! Oh Joy! What A Treat!	5	248
-1189	Gertude Champlin	AMAZING! Oh Joy! What A Treat!	5	248
-1190	Ezekiel Howe	Decent but not the best.	3	248
-1191	Basil Tillman Jr.	It was not the worst but I found it to be pretty bad.	2	248
-1192	Conrad Sauer	Decent but not the best.	3	249
-1193	Elwanda Hand VM	TERRIBLE! DO NOT BUY!	1	249
-1194	Clyde Aufderhar MD	Actually pretty good, would buy again.	4	249
-1195	Shae Keebler	It was not the worst but I found it to be pretty bad.	2	249
-1196	Gladys Yundt	Actually pretty good, would buy again.	4	249
-1197	Nichol Simonis V	Decent but not the best.	3	250
-1198	Spring Legros	AMAZING! Oh Joy! What A Treat!	5	250
-1199	Fr. Kenneth Lebsack	Decent but not the best.	3	250
-1200	Kasey Volkman	TERRIBLE! DO NOT BUY!	1	250
-1201	Gov. Twyla Beatty	It was not the worst but I found it to be pretty bad.	2	250
-1202	Bryon Kreiger	TERRIBLE! DO NOT BUY!	1	251
-1203	Ailene Gutkowski DC	Actually pretty good, would buy again.	4	251
-1204	Elliot Williamson	AMAZING! Oh Joy! What A Treat!	5	251
-1205	Adelia Windler II	Actually pretty good, would buy again.	4	251
-1206	Deloise Bechtelar	Decent but not the best.	3	251
-1207	Sonny Prohaska	Decent but not the best.	3	252
-1208	Aundrea Walsh	TERRIBLE! DO NOT BUY!	1	252
-1209	Haydee Connelly	Decent but not the best.	3	252
-1210	The Hon. Ray Yundt	TERRIBLE! DO NOT BUY!	1	252
-1211	Jamey D'Amore	It was not the worst but I found it to be pretty bad.	2	252
-1212	Ms. Bryon Trantow	Actually pretty good, would buy again.	4	253
-1213	Detra Jacobs	AMAZING! Oh Joy! What A Treat!	5	253
-1214	Cythia Heaney	AMAZING! Oh Joy! What A Treat!	5	253
-1215	Melodee Howell	Actually pretty good, would buy again.	4	253
-1216	Candyce Jast	Actually pretty good, would buy again.	4	253
-1217	Kareem Schimmel	AMAZING! Oh Joy! What A Treat!	5	254
-1218	Rosario Ebert	Actually pretty good, would buy again.	4	254
-1219	Manual Kessler	AMAZING! Oh Joy! What A Treat!	5	254
-1220	Allan Murphy	Decent but not the best.	3	254
-1221	Mr. Yajaira Klocko	Decent but not the best.	3	254
-1222	Lavone Ondricka I	Decent but not the best.	3	255
-1223	Msgr. Sandee Becker	TERRIBLE! DO NOT BUY!	1	255
-1224	Chauncey Klocko	AMAZING! Oh Joy! What A Treat!	5	255
-1225	Setsuko Lesch LLD	Actually pretty good, would buy again.	4	255
-1226	Jerrod Rodriguez	Decent but not the best.	3	255
-1227	Curtis Daugherty DVM	It was not the worst but I found it to be pretty bad.	2	256
-1228	Nada Ebert	Decent but not the best.	3	256
-1229	Missy Jast	It was not the worst but I found it to be pretty bad.	2	256
-1230	Miranda Shields	Actually pretty good, would buy again.	4	256
-1231	Luis Bernhard	AMAZING! Oh Joy! What A Treat!	5	256
-1232	Jesica Tromp	It was not the worst but I found it to be pretty bad.	2	257
-1233	Lorene Emmerich	Actually pretty good, would buy again.	4	257
-1234	Petronila Osinski	It was not the worst but I found it to be pretty bad.	2	257
-1235	Rosella Johns	AMAZING! Oh Joy! What A Treat!	5	257
-1236	Sen. Nicolasa Jones	It was not the worst but I found it to be pretty bad.	2	257
-1237	Angelia Schulist	Decent but not the best.	3	258
-1238	Shirlene Schiller	AMAZING! Oh Joy! What A Treat!	5	258
-1239	Allyson Miller	TERRIBLE! DO NOT BUY!	1	258
-1240	Faustino Keebler	Decent but not the best.	3	258
-1241	Farrah Rempel	TERRIBLE! DO NOT BUY!	1	258
-1242	Vivienne Miller	Decent but not the best.	3	259
-1243	Elton Gleason Sr.	Decent but not the best.	3	259
-1244	Dario Stark	AMAZING! Oh Joy! What A Treat!	5	259
-1245	Hilario O'Conner	TERRIBLE! DO NOT BUY!	1	259
-1246	Miss Terica Skiles	It was not the worst but I found it to be pretty bad.	2	259
-1247	Ms. Babette Crona	It was not the worst but I found it to be pretty bad.	2	260
-1248	Destiny Harris	Actually pretty good, would buy again.	4	260
-1249	Nobuko Brekke	It was not the worst but I found it to be pretty bad.	2	260
-1250	Zulma MacGyver	Decent but not the best.	3	260
-1251	Rosalind Funk MD	It was not the worst but I found it to be pretty bad.	2	260
+COPY public.reviews (id, author, content_body, rating, product_id, user_id) FROM stdin;
+1902	Barbra Schoen	AMAZING! Oh Joy! What A Treat!	5	397	21
+1903	Rueben Deckow	It was not the worst but I found it to be pretty bad.	2	397	21
+1904	Ehtel Cartwright	Actually pretty good, would buy again.	4	397	21
+1905	Ricki Okuneva	It was not the worst but I found it to be pretty bad.	2	398	21
+1906	Justine Rippin	Decent but not the best.	3	398	21
+1907	Ike Kunze	Actually pretty good, would buy again.	4	398	21
+1908	Erasmo Collins	AMAZING! Oh Joy! What A Treat!	5	398	21
+1909	Deandre Price	AMAZING! Oh Joy! What A Treat!	5	398	21
+1910	Harley Batz	TERRIBLE! DO NOT BUY!	1	399	21
+1911	Nichelle Bruen	It was not the worst but I found it to be pretty bad.	2	399	21
+1912	Fr. Sunshine Schimmel	AMAZING! Oh Joy! What A Treat!	5	399	21
+1913	Prof. Regina Bauch	Decent but not the best.	3	399	21
+1914	Alphonse Bauch IV	Decent but not the best.	3	399	21
+1915	Pres. Solomon Brown	AMAZING! Oh Joy! What A Treat!	5	400	21
+1916	Dustin Schmidt	AMAZING! Oh Joy! What A Treat!	5	400	21
+1917	Joanna Hand	Actually pretty good, would buy again.	4	400	21
+1918	Corrie Shields	Decent but not the best.	3	400	21
+1919	Rev. Edgar Parker	AMAZING! Oh Joy! What A Treat!	5	400	21
+1920	Amb. Gwyn Boyer	Actually pretty good, would buy again.	4	401	21
+1921	Joane Ebert	TERRIBLE! DO NOT BUY!	1	401	21
+1922	Miss Rolland Greenholt	Decent but not the best.	3	401	21
+1923	Adan Stoltenberg	Actually pretty good, would buy again.	4	401	21
+1924	Oneida Cole	Actually pretty good, would buy again.	4	401	21
+1925	Maxwell Moen	TERRIBLE! DO NOT BUY!	1	402	21
+1926	Charlsie Runolfsson III	TERRIBLE! DO NOT BUY!	1	402	21
+1927	Miss Jaymie Tremblay	AMAZING! Oh Joy! What A Treat!	5	402	21
+1928	Rep. Katheleen Hartmann	Decent but not the best.	3	402	21
+1929	Jeremiah Kuhic	It was not the worst but I found it to be pretty bad.	2	402	21
+1930	Sierra Effertz	It was not the worst but I found it to be pretty bad.	2	403	21
+1931	Javier Schaefer	It was not the worst but I found it to be pretty bad.	2	403	21
+1932	Assunta Klein	Actually pretty good, would buy again.	4	403	21
+1933	Grace Bernier	It was not the worst but I found it to be pretty bad.	2	403	21
+1934	Sierra Koelpin	TERRIBLE! DO NOT BUY!	1	403	21
+1935	Denny Reichel	AMAZING! Oh Joy! What A Treat!	5	404	21
+1936	Genie Renner CPA	It was not the worst but I found it to be pretty bad.	2	404	21
+1937	Clyde Walsh	It was not the worst but I found it to be pretty bad.	2	404	21
+1938	Lewis Hirthe	It was not the worst but I found it to be pretty bad.	2	404	21
+1939	Laila Glover	Actually pretty good, would buy again.	4	404	21
+1940	Tyrone Friesen DC	AMAZING! Oh Joy! What A Treat!	5	405	21
+1941	Marcia Thiel DDS	TERRIBLE! DO NOT BUY!	1	405	21
+1942	Herman Spencer IV	It was not the worst but I found it to be pretty bad.	2	405	21
+1943	Clifton Kilback	TERRIBLE! DO NOT BUY!	1	405	21
+1944	Jackie Kilback	Decent but not the best.	3	405	21
+1945	Alberta Corkery	Actually pretty good, would buy again.	4	406	21
+1946	Miss Hiram McDermott	TERRIBLE! DO NOT BUY!	1	406	21
+1947	Illa Bergstrom	Actually pretty good, would buy again.	4	406	21
+1948	Lois Schimmel LLD	Actually pretty good, would buy again.	4	406	21
+1949	Rod Streich	Decent but not the best.	3	406	21
+1950	Rogelio Barton	Decent but not the best.	3	407	21
+1951	Emmaline Lubowitz	Actually pretty good, would buy again.	4	407	21
+1952	Sharie Lakin	AMAZING! Oh Joy! What A Treat!	5	407	21
+1953	Gayle Barrows	Decent but not the best.	3	407	21
+1954	Rev. Sid Kovacek	Actually pretty good, would buy again.	4	407	21
+1955	Lizabeth Mertz	TERRIBLE! DO NOT BUY!	1	408	21
+1956	Amb. Willette Bayer	TERRIBLE! DO NOT BUY!	1	408	21
+1957	Zachary Kozey	AMAZING! Oh Joy! What A Treat!	5	408	21
+1958	Soraya DuBuque DVM	It was not the worst but I found it to be pretty bad.	2	408	21
+1959	Ruben Ankunding JD	Decent but not the best.	3	408	21
+1960	Reta Swift	TERRIBLE! DO NOT BUY!	1	409	21
+1961	Faustino Dooley	TERRIBLE! DO NOT BUY!	1	409	21
+1962	Ken Parisian	It was not the worst but I found it to be pretty bad.	2	409	21
+1963	Milagros Tremblay	AMAZING! Oh Joy! What A Treat!	5	409	21
+1964	Markita Rosenbaum	TERRIBLE! DO NOT BUY!	1	409	21
+1965	Carmen Wiza	TERRIBLE! DO NOT BUY!	1	410	21
+1966	Barton O'Conner	Actually pretty good, would buy again.	4	410	21
+1967	Criselda Adams	Actually pretty good, would buy again.	4	410	21
+1968	Omar Abbott	TERRIBLE! DO NOT BUY!	1	410	21
+1969	Marylee Bartoletti	AMAZING! Oh Joy! What A Treat!	5	410	21
+1970	Janiece Hartmann	Actually pretty good, would buy again.	4	411	21
+1971	Sen. Cecil Kshlerin	Actually pretty good, would buy again.	4	411	21
+1972	Russell Dicki V	It was not the worst but I found it to be pretty bad.	2	411	21
+1973	Shelby Beier	It was not the worst but I found it to be pretty bad.	2	411	21
+1974	Avery Pacocha DC	Decent but not the best.	3	411	21
+1975	Lillian Davis	Decent but not the best.	3	412	21
+1976	Jamee Paucek	AMAZING! Oh Joy! What A Treat!	5	412	21
+1977	Scott Tromp DO	Actually pretty good, would buy again.	4	412	21
+1978	Eliza Heidenreich	It was not the worst but I found it to be pretty bad.	2	412	21
+1979	Lloyd Gerlach	TERRIBLE! DO NOT BUY!	1	412	21
+1980	Lanie Schumm	TERRIBLE! DO NOT BUY!	1	413	21
+1981	Joaquina McClure	It was not the worst but I found it to be pretty bad.	2	413	21
+1982	Mr. Russell Keebler	It was not the worst but I found it to be pretty bad.	2	413	21
+1983	Melonie Kuhlman	AMAZING! Oh Joy! What A Treat!	5	413	21
+1984	Lizabeth Will	AMAZING! Oh Joy! What A Treat!	5	413	21
+1985	Jone Graham	It was not the worst but I found it to be pretty bad.	2	414	21
+1986	Josette Sipes	AMAZING! Oh Joy! What A Treat!	5	414	21
+1987	Tracey Jacobs DVM	Actually pretty good, would buy again.	4	414	21
+1988	Chris Wisoky	Actually pretty good, would buy again.	4	414	21
+1989	Ellsworth Konopelski	It was not the worst but I found it to be pretty bad.	2	414	21
+1990	Trista Champlin IV	It was not the worst but I found it to be pretty bad.	2	415	21
+1991	Candis Nicolas	Decent but not the best.	3	415	21
+1992	Carmelia Hackett	It was not the worst but I found it to be pretty bad.	2	415	21
+1993	Dorcas Weimann V	TERRIBLE! DO NOT BUY!	1	415	21
+1994	Mitzi Hane	It was not the worst but I found it to be pretty bad.	2	415	21
+1995	Audrea King	AMAZING! Oh Joy! What A Treat!	5	416	21
+1996	Dan Hyatt	Decent but not the best.	3	416	21
+1997	Mr. Shemeka Hudson	AMAZING! Oh Joy! What A Treat!	5	416	21
+1998	Ms. Christopher Kunze	TERRIBLE! DO NOT BUY!	1	416	21
+1999	Fr. Melvin Spencer	Decent but not the best.	3	416	21
+2000	Cristie Konopelski	Decent but not the best.	3	417	21
+2001	Ericka Rohan	TERRIBLE! DO NOT BUY!	1	417	21
+2002	Calvin Adams	Decent but not the best.	3	417	21
+2003	Kyle Bailey	AMAZING! Oh Joy! What A Treat!	5	417	21
+2004	Theodora Torphy	It was not the worst but I found it to be pretty bad.	2	417	21
+1755	Carleen Gerhold VM	Decent but not the best.	3	368	21
+1756	Erich Hudson	Decent but not the best.	3	368	21
+1757	Miss Trent Kassulke	Actually pretty good, would buy again.	4	368	21
+1758	Leia Lemke	It was not the worst but I found it to be pretty bad.	2	368	21
+1759	Suzan Reinger	AMAZING! Oh Joy! What A Treat!	5	368	21
+1760	Almeda McKenzie	AMAZING! Oh Joy! What A Treat!	5	369	21
+1761	Bettye Denesik VM	Actually pretty good, would buy again.	4	369	21
+1762	Rep. Randolph Strosin	Decent but not the best.	3	369	21
+1763	Prof. Quinton Tillman	AMAZING! Oh Joy! What A Treat!	5	369	21
+1764	Mrs. Maryjo Rohan	Decent but not the best.	3	369	21
+1765	Richard Pouros	TERRIBLE! DO NOT BUY!	1	370	21
+1766	Hipolito Gulgowski	Decent but not the best.	3	370	21
+1767	Geraldine Hand	TERRIBLE! DO NOT BUY!	1	370	21
+1768	Pearly Wehner	AMAZING! Oh Joy! What A Treat!	5	370	21
+1769	Edgardo Gorczany DVM	Actually pretty good, would buy again.	4	370	21
+1770	Fr. Terisa Rutherford	AMAZING! Oh Joy! What A Treat!	5	371	21
+1771	Quyen Anderson	TERRIBLE! DO NOT BUY!	1	371	21
+1772	Daron Sipes LLD	It was not the worst but I found it to be pretty bad.	2	371	21
+1773	Miss Valencia Krajcik	AMAZING! Oh Joy! What A Treat!	5	371	21
+1774	Joana Bradtke MD	Decent but not the best.	3	371	21
+1775	Daryl Mertz LLD	AMAZING! Oh Joy! What A Treat!	5	372	21
+1776	Consuelo Goldner	AMAZING! Oh Joy! What A Treat!	5	372	21
+1777	Kym Rowe	TERRIBLE! DO NOT BUY!	1	372	21
+1778	Bert Collier	Decent but not the best.	3	372	21
+1779	Gary Grady	Actually pretty good, would buy again.	4	372	21
+1780	Sidney Orn	AMAZING! Oh Joy! What A Treat!	5	373	21
+1781	Jamison Kuhic	Decent but not the best.	3	373	21
+1782	Donovan Auer	Decent but not the best.	3	373	21
+1783	Rep. Gene Swaniawski	Actually pretty good, would buy again.	4	373	21
+1784	Bess Bahringer	Actually pretty good, would buy again.	4	373	21
+1785	Felix Cruickshank	AMAZING! Oh Joy! What A Treat!	5	374	21
+1786	Consuelo Halvorson	Actually pretty good, would buy again.	4	374	21
+1787	Gale Heaney	TERRIBLE! DO NOT BUY!	1	374	21
+1788	Grady Volkman	It was not the worst but I found it to be pretty bad.	2	374	21
+1789	Katherine Weimann JD	Actually pretty good, would buy again.	4	374	21
+1790	Thurman Sanford	Decent but not the best.	3	375	21
+1791	Claude Bashirian	It was not the worst but I found it to be pretty bad.	2	375	21
+1792	Marion Streich	Decent but not the best.	3	375	21
+1793	Prof. Eric Orn	Actually pretty good, would buy again.	4	375	21
+1794	Tony McLaughlin	Actually pretty good, would buy again.	4	375	21
+1795	Juana Predovic	AMAZING! Oh Joy! What A Treat!	5	376	21
+1796	Dominick Graham MD	It was not the worst but I found it to be pretty bad.	2	376	21
+1797	Anglea Collier	Decent but not the best.	3	376	21
+1798	Pres. Jesica Orn	Actually pretty good, would buy again.	4	376	21
+1799	Von Gibson	AMAZING! Oh Joy! What A Treat!	5	376	21
+1800	Ramiro Towne	Actually pretty good, would buy again.	4	377	21
+1801	Leon Erdman	Actually pretty good, would buy again.	4	377	21
+1802	Zelma MacGyver	Decent but not the best.	3	377	21
+1803	Jeremy Romaguera	It was not the worst but I found it to be pretty bad.	2	377	21
+1804	Frederick Labadie Sr.	Actually pretty good, would buy again.	4	377	21
+1805	Rob Harris	Actually pretty good, would buy again.	4	378	21
+1806	Ricky Fadel	It was not the worst but I found it to be pretty bad.	2	378	21
+1807	Donald Schultz	TERRIBLE! DO NOT BUY!	1	378	21
+1808	Fr. Lynetta Hane	It was not the worst but I found it to be pretty bad.	2	378	21
+1809	Sam Crooks VM	AMAZING! Oh Joy! What A Treat!	5	378	21
+1810	Shannan Schroeder	TERRIBLE! DO NOT BUY!	1	379	21
+1811	Lamont Gleichner	It was not the worst but I found it to be pretty bad.	2	379	21
+1812	Mitchell Rutherford JD	AMAZING! Oh Joy! What A Treat!	5	379	21
+1813	Hassie Schamberger	Decent but not the best.	3	379	21
+1814	Alvin Trantow	AMAZING! Oh Joy! What A Treat!	5	379	21
+1815	Mr. Bok Cummerata	TERRIBLE! DO NOT BUY!	1	380	21
+1816	Phebe Willms	TERRIBLE! DO NOT BUY!	1	380	21
+1817	Buddy Graham II	It was not the worst but I found it to be pretty bad.	2	380	21
+1818	Fermina Ritchie	AMAZING! Oh Joy! What A Treat!	5	380	21
+1819	Mr. Chantelle Kertzmann	AMAZING! Oh Joy! What A Treat!	5	380	21
+1820	Martina Hartmann	Actually pretty good, would buy again.	4	381	21
+1821	Leigh Haag	AMAZING! Oh Joy! What A Treat!	5	381	21
+1822	Gaston Bode	Actually pretty good, would buy again.	4	381	21
+1823	Roxy Kuhlman	It was not the worst but I found it to be pretty bad.	2	381	21
+1824	Jerrell Gutkowski	TERRIBLE! DO NOT BUY!	1	381	21
+1825	Pres. Cinda Oberbrunner	AMAZING! Oh Joy! What A Treat!	5	382	21
+1826	Porsche Smith JD	Decent but not the best.	3	382	21
+1827	Josef Dickinson	AMAZING! Oh Joy! What A Treat!	5	382	21
+1828	Joel Daugherty III	TERRIBLE! DO NOT BUY!	1	382	21
+1829	Ken Breitenberg	It was not the worst but I found it to be pretty bad.	2	382	21
+1830	Blair Ernser	TERRIBLE! DO NOT BUY!	1	383	21
+1831	Cleveland Conroy	Decent but not the best.	3	383	21
+1832	Leandro Boyer	Decent but not the best.	3	383	21
+1833	The Hon. Phil Gorczany	It was not the worst but I found it to be pretty bad.	2	383	21
+1834	Marylin Schaden	Decent but not the best.	3	383	21
+1835	Ignacia Quitzon	Decent but not the best.	3	384	21
+1836	Arlie Huel	AMAZING! Oh Joy! What A Treat!	5	384	21
+1837	Caitlin Willms	Decent but not the best.	3	384	21
+1838	Orlando Schimmel VM	Decent but not the best.	3	384	21
+1839	Leo McCullough	It was not the worst but I found it to be pretty bad.	2	384	21
+1840	Joe Rice	Decent but not the best.	3	385	21
+1841	Mr. Deshawn Swaniawski	Decent but not the best.	3	385	21
+1842	Dorotha Ernser	Actually pretty good, would buy again.	4	385	21
+1843	Brittaney Kemmer III	Decent but not the best.	3	385	21
+1844	Sarita Donnelly	It was not the worst but I found it to be pretty bad.	2	385	21
+1845	Shawnda Adams	It was not the worst but I found it to be pretty bad.	2	386	21
+1846	Tinisha Mraz	Decent but not the best.	3	386	21
+1847	Fritz Spencer	AMAZING! Oh Joy! What A Treat!	5	386	21
+1848	Rep. Stephine Reichel	Actually pretty good, would buy again.	4	386	21
+1849	Tim Cartwright	Actually pretty good, would buy again.	4	386	21
+1850	Margarett Schaefer Ret.	Actually pretty good, would buy again.	4	387	21
+1851	Cesar Sawayn	AMAZING! Oh Joy! What A Treat!	5	387	21
+1852	Debi Schiller	AMAZING! Oh Joy! What A Treat!	5	387	21
+1853	Pamela Altenwerth	AMAZING! Oh Joy! What A Treat!	5	387	21
+1854	The Hon. Leonora Wolff	TERRIBLE! DO NOT BUY!	1	387	21
+1855	Gerard Toy	Actually pretty good, would buy again.	4	388	21
+1856	Etha Flatley	AMAZING! Oh Joy! What A Treat!	5	388	21
+1857	Allie Smith	Decent but not the best.	3	388	21
+1858	Dr. Therese Okuneva	AMAZING! Oh Joy! What A Treat!	5	388	21
+1859	Blake Fisher DDS	Decent but not the best.	3	388	21
+1860	Armand Wehner	It was not the worst but I found it to be pretty bad.	2	389	21
+1861	Noel Rolfson	TERRIBLE! DO NOT BUY!	1	389	21
+1862	Manuela Kirlin	It was not the worst but I found it to be pretty bad.	2	389	21
+1863	Magda Beier	Actually pretty good, would buy again.	4	389	21
+1864	Hayley Beahan I	It was not the worst but I found it to be pretty bad.	2	389	21
+1865	Chas Wiegand	AMAZING! Oh Joy! What A Treat!	5	390	21
+1866	Nichol Braun	AMAZING! Oh Joy! What A Treat!	5	390	21
+1867	Morgan Jones	AMAZING! Oh Joy! What A Treat!	5	390	21
+1868	Gertrude Tremblay	Decent but not the best.	3	390	21
+1869	Gianna Rosenbaum	Decent but not the best.	3	390	21
+1870	Dr. Yer Ortiz	Actually pretty good, would buy again.	4	391	21
+1871	Son Wilderman	Decent but not the best.	3	391	21
+1872	Kizzie Romaguera	TERRIBLE! DO NOT BUY!	1	391	21
+1873	Tyron Anderson	TERRIBLE! DO NOT BUY!	1	391	21
+1874	Ahmed Strosin	TERRIBLE! DO NOT BUY!	1	391	21
+1875	Vernon Rempel	It was not the worst but I found it to be pretty bad.	2	392	21
+1876	Vince Schuppe	Decent but not the best.	3	392	21
+1877	Lia Schmidt	AMAZING! Oh Joy! What A Treat!	5	392	21
+1878	Giovanna Kautzer	TERRIBLE! DO NOT BUY!	1	392	21
+1879	Phil Hoeger	Actually pretty good, would buy again.	4	392	21
+1880	Rudy Schiller	TERRIBLE! DO NOT BUY!	1	393	21
+1881	Mackenzie Johnston	It was not the worst but I found it to be pretty bad.	2	393	21
+1882	Bryant Hane	AMAZING! Oh Joy! What A Treat!	5	393	21
+1883	Grant Wilderman DVM	Actually pretty good, would buy again.	4	393	21
+1884	Carolyne Wintheiser CPA	TERRIBLE! DO NOT BUY!	1	393	21
+1885	Milan Grant	Decent but not the best.	3	394	21
+1886	Alvaro Ullrich	Decent but not the best.	3	394	21
+1887	Fr. Jacob Kovacek	AMAZING! Oh Joy! What A Treat!	5	394	21
+1888	Phillip MacGyver	Actually pretty good, would buy again.	4	394	21
+1889	Jordon Borer	Actually pretty good, would buy again.	4	394	21
+1890	Quincy Flatley	It was not the worst but I found it to be pretty bad.	2	395	21
+1891	Lincoln Raynor Sr.	TERRIBLE! DO NOT BUY!	1	395	21
+1892	Brain Kunde	It was not the worst but I found it to be pretty bad.	2	395	21
+1893	Lanora Funk	Actually pretty good, would buy again.	4	395	21
+1894	Amb. Ira Price	It was not the worst but I found it to be pretty bad.	2	395	21
+1895	Zula Deckow	It was not the worst but I found it to be pretty bad.	2	396	21
+1896	Hyacinth Crona V	TERRIBLE! DO NOT BUY!	1	396	21
+1897	Pearlene Greenholt	It was not the worst but I found it to be pretty bad.	2	396	21
+1898	Rufus Littel I	AMAZING! Oh Joy! What A Treat!	5	396	21
+1899	Ahmed Bogan	AMAZING! Oh Joy! What A Treat!	5	396	21
+1900	Glenn Abernathy	TERRIBLE! DO NOT BUY!	1	397	21
+1901	Isadora Frami	Decent but not the best.	3	397	21
 \.
 
 
@@ -461,6 +509,19 @@ COPY public.reviews (id, author, content_body, rating, product_id) FROM stdin;
 
 COPY public.schema_migrations (version) FROM stdin;
 20210319174050
+20210326153153
+20210326164011
+20210326171258
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: HB
+--
+
+COPY public.users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, created_at, updated_at, admin) FROM stdin;
+20	admin@admin.com	$2a$12$LFe1q1y6P0ZjsyPjMBKyKuzvINrVG7nFHjY3brHYwXK9y/B80p5WC	\N	\N	\N	2021-03-26 23:24:54.698912	2021-03-26 23:24:54.698912	t
+21	user@user.com	$2a$12$.DE7FdZOCCXckAvwvGucYO1SpucJj2Ll5yrNIQciWlBYmoC.u/fxO	\N	\N	\N	2021-03-26 23:24:54.886496	2021-03-26 23:24:54.886496	f
 \.
 
 
@@ -468,14 +529,21 @@ COPY public.schema_migrations (version) FROM stdin;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: HB
 --
 
-SELECT pg_catalog.setval('public.products_id_seq', 260, true);
+SELECT pg_catalog.setval('public.products_id_seq', 417, true);
 
 
 --
 -- Name: reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: HB
 --
 
-SELECT pg_catalog.setval('public.reviews_id_seq', 1251, true);
+SELECT pg_catalog.setval('public.reviews_id_seq', 2004, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: HB
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 21, true);
 
 
 --
@@ -508,6 +576,36 @@ ALTER TABLE ONLY public.reviews
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: HB
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: HB
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: HB
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- Name: reviews fk_rails_74a66bd6c5; Type: FK CONSTRAINT; Schema: public; Owner: HB
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT fk_rails_74a66bd6c5 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
