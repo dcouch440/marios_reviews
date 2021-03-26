@@ -18,6 +18,7 @@
   </div>
   <div class="change">
     <% if current_user&.admin %>
+
       <div>
         <%= link_to "Edit review", edit_product_review_path(@product, @review) %>
       </div>
