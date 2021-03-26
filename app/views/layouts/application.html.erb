@@ -10,6 +10,23 @@
 </head>
 
 <body>
+  <div id="navbar">
+    <div id="navigation">
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+    </div>
+    <div id="sign-up">
+      <% if user_signed_in? %>
+        <div>
+          <div>Welcome <%= current_user.email %></div>
+          <%= button_to "Sign out", destroy_user_session_path, :method => :delete %>
+        </div>
+      <% else %>
+        <a href="/users/sign_in">sign-in</a>
+        <a href="/users/sign_up">sign-up</a>
+      <% end %>
+    </div>
+  </div>
   <div id="page-container">
     <%= yield %>
   </div>
