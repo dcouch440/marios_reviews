@@ -1,8 +1,15 @@
 require 'rails_helper'
 
-describe "the edit review process" do
+describe "the admin edit review process" do
 
   before :each do
+
+    Bot.make
+
+    visit '/users/sign_in'
+    fill_in 'user_email', with: 'admin@admin.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    click_on 'Log in'
 
     Product.create(
       name: "Dan Jones Mic's",

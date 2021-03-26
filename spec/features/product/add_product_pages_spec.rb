@@ -1,12 +1,18 @@
 require 'rails_helper'
 
-describe "the add recipe process" do
+describe "the admin add product process" do
 
   before :each do
+    Bot.make
+
+    visit '/users/sign_in'
+    fill_in 'user_email', with: 'admin@admin.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    click_on 'Log in'
 
     visit '/'
     click_link 'Get Started.. Go To Products'
-    click_link 'Add One Here'
+    click_link 'Add Product'
 
   end
 

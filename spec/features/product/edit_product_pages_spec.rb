@@ -4,6 +4,12 @@ describe "the edit product process" do
 
   before :each do
 
+    Bot.make
+    visit '/users/sign_in'
+    fill_in 'user_email', with: 'admin@admin.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    click_on 'Log in'
+
     Product.create(
       name: "Dan Jones Mic's",
       cost: '225.00',

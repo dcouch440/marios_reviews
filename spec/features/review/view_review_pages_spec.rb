@@ -3,6 +3,13 @@ require 'rails_helper'
 describe "the view product path" do
 
   before :each do
+    Bot.make
+
+    visit '/users/sign_in'
+    fill_in 'user_email', with: 'user@user.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    click_on 'Log in'
+
     @product = Product.create(
       name: "Dan Jones Mic's",
       cost: '225.00',
@@ -16,6 +23,7 @@ describe "the view product path" do
       author: "TEST",
       rating: "1",
       content_body: 'TEST',
+      user_id: Bot.user.id
     )
 
     visit "/products/#{@product.id}/reviews/#{review.id}"
@@ -30,6 +38,7 @@ describe "the view product path" do
       author: "TEST",
       rating: "5",
       content_body: 'TEST',
+      user_id: Bot.user.id
     )
 
     visit "/products/#{@product.id}/reviews/#{review.id}"

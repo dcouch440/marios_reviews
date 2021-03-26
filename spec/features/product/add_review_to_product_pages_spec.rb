@@ -26,7 +26,6 @@ describe "the add review to product process" do
 
     click_button 'Submit'
 
-    save_and_open_page
     expect(page).to have_content 'Furman Shore'
 
   end

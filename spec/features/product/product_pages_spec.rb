@@ -3,6 +3,12 @@ require 'rails_helper'
 context "statistics should be displayed" do
 
   before :each do
+    Bot.make
+
+    visit '/users/sign_in'
+    fill_in 'user_email', with: 'user@user.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    click_on 'Log in'
 
     @product = Product.create(
       name: 'Apple Ipad',
@@ -19,6 +25,7 @@ context "statistics should be displayed" do
         author: 'Sam',
         rating: "#{score}",
         content_body: 'TEST',
+        user_id: Bot.user.id
       )
 
     end

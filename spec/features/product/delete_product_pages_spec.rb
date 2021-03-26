@@ -1,8 +1,14 @@
 require 'rails_helper'
 
-describe "the delete recipe process" do
+describe "admin delete product process" do
 
-  it "deletes a recipe when commanded to" do
+  it "deletes a product when commanded to" do
+
+    Bot.make
+    visit '/users/sign_in'
+    fill_in 'user_email', with: 'admin@admin.com'
+    fill_in 'user_password', with: 'asdasdasd'
+    click_on 'Log in'
 
     Product.create(
       name: "Dan Jones Mic's",

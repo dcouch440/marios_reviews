@@ -23,18 +23,21 @@ describe Product do
 
     it "averages the reviews from the given product instance" do
 
-      @product = Product.create({
+      Bot.make
+
+      @product = Product.create(
         name: "soup apples",
         cost: 5,
         country_of_origin: 'Spain'
-      })
+      )
 
       [1,2,5].each do |score|
 
-        @product.reviews.create(
+        @product.reviews.create!(
           author: 'Sam',
           rating: "#{score}",
           content_body: 'TEST',
+          user_id: Bot.user.id
         )
 
       end
