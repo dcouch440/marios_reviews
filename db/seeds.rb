@@ -3,8 +3,6 @@ require 'faker'
 Product.destroy_all
 Review.destroy_all
 User.destroy_all
-#  Mario adds the items to be reviewed -> users add reviews to items and can only edit or delete if it is theirs
-
 
 1.times do
   # create admin once for testing ui

@@ -114,6 +114,8 @@ Setup postgresql for rails
 * If you wish to keep these private you can also use a credentials password
 * See this link to learn how to do so. ( https://www.youtube.com/watch?v=BHgvPPr2nLE )
   
+* Start off by deleting your credentials.yml.enc file and master.key (within config folder) in order to generate another
+
 ```
   For vs code users try
   EDITOR="code --wait" rails credentials:edit
@@ -152,6 +154,41 @@ rails db:migrate
 ```
 
 * visit localhost:3000 to view the app
+
+
+### Admin or user?
+
+##### This app is set up to use from a user or admin perspective, each role will have different privileges.
+* To make a Admin you will need to generate from the console.
+* Start by entering in information to your terminal as such:
+
+```
+$ rails c
+
+
+ ( wait for loading )
+
+
+
+ ( from here you will see )
+
+
+Loading development environment (Rails 5.2.4.5)
+irb(main):001:0>
+
+
+  Type these instructions out while replacing the '' with information you want.
+  The admin variable should be set to true as seen below.
+  The default will always be false so don't worry about that.
+
+
+> User.create!(email: '', password: '', password_confirmation: '', admin: true)
+
+
+  If things are set up correctly you should now be able to login from the email.
+  Fallow along with error response instructions if things do not look right.
+
+```
 
 ## `Schema`
 <img src="public/img/schema_mario.PNG">

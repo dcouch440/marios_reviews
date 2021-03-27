@@ -42,7 +42,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'faker'
-  gem 'simplecov', require: false
+  gem 'simplecov', require: false, group: :test
   gem 'capybara'
   gem "factory_bot_rails"
 end
