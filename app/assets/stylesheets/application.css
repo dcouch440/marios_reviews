@@ -33,11 +33,16 @@ body {
   width: 100%;
   background-color: black;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 15px;
 }
 #sign-up {
   display: flex;
+}
+#sign-up > div {
+  display: inline-block;
+  white-space: nowrap;
 }
 #sign-up > * {
   padding-right: 20px;
@@ -53,6 +58,10 @@ body {
 }
 a {
   color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: goldenrod;
 }
 
 /* titling */
@@ -200,7 +209,7 @@ a {
   color: white;
 }
 
-/* forms */
+/* forms container */
 .form-page {
   box-shadow: 0px 0px 5px black;
   display:flex;
@@ -220,27 +229,39 @@ a {
   width: 100%;
   height: 100%;
 }
-.form > form > div {
+
+/* form itself  */
+form {
+  width: 80%;
+}
+form > div {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.form label {
+form label {
+  flex: 1;
   margin-right: 30px;
-  font-size: 36px;
+  font-size: 26px;
 }
-.form input {
-  padding: 10px;
+.form form :is(input, textarea) {
+  flex: 3 0 auto;
+  box-shadow: inset 0 0 3px black;
   border-radius: 20px;
-  max-width: 500px
+  padding: 10px;
 }
-.form input:focus {
+.form form :is(input, textarea):focus {
   padding: 10px;
   outline: none;
   box-shadow: 0px 0px 0px 5px black;
   border-radius: 20px;
 }
-.form  button {
+form textarea {
+  resize: none;
+  height: 250px;
+}
+.form button {
   font-weight: 900;
   padding: 20px 40px;
   border-radius: 20px;
@@ -248,17 +269,12 @@ a {
   border: 5px solid white;
   background-color: black;
 }
-.form  button:hover {
+.form button:hover {
   cursor: pointer;
   background-color: white;
   box-shadow: inset 0px 0px 2px black;
   transition: .2s;
   color: black;
-}
-.form textarea {
-  resize: none;
-  flex-basis: 500px;
-  height: 250px;
 }
 @media only screen and (max-width: 1000px) {
   .form-page {
@@ -355,16 +371,16 @@ a {
   align-items: center;
 }
 .description {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   margin-bottom: 15px;
   border-radius: 20px;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   padding: 15px;
   justify-content: space-between;
   font-size: 40px;
-  color: rgb(255, 255, 255);
-  box-shadow: inset 0px 0px 5px white;
+  color: rgb(0, 0, 0);
 }
 .description > div {
   padding: 20px;
@@ -400,7 +416,7 @@ a {
   color: rgb(0, 0, 0);
   display: flex;
   flex-wrap: wrap;
-  font-size: 1.8vw;
+  font-size: 1.3vw;
   padding: 40px;
   min-height: 50%;
   box-shadow: inset 0px 0px 2px black;
