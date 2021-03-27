@@ -7,10 +7,12 @@
 
 ***
 
-This is a week 4 ` Ruby/Rails ` Epicodus school project.\
+This is a week 4-5 ` Ruby/Rails ` Epicodus school project.\
 This app uses postgresql to leave reviews for products.\
 Requirements for products include: Name, Cost, and Country of Origin.\
-Requirements for reviews include: Author, Content Body, Rating.
+Requirements for reviews include: Author, Content Body, Rating.\
+requirements for users include ownership of reviews, and admin roles for crud functionality.
+
 ***
 ### `Technology Used:`
 
