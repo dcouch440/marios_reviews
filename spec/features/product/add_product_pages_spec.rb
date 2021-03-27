@@ -27,6 +27,18 @@ describe "the admin add product process" do
 
   end
 
+  it "prevents non number inputs" do
+
+    fill_in 'product_name', :with => 'Apple Ipad'
+    fill_in 'product_cost', :with => 'zap'
+    fill_in 'product_country_of_origin', :with => 'Usa'
+    click_on 'Submit'
+
+    expect(page).to have_content 'Cost is not a number'
+
+  end
+
+
   it "gives an error when no product name, cost, country of origin, is entered" do
 
     fill_in 'product_name', :with => ''
