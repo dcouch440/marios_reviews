@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
+
   validates :author, presence: true
 
   validates :content_body, presence: true,
@@ -9,4 +10,5 @@ class Review < ApplicationRecord
 
   belongs_to :product
   belongs_to :user
+
 end
