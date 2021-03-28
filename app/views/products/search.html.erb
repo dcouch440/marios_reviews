@@ -1,0 +1,21 @@
+<div class="titleize">
+  <div class="title">Search Results</div>
+</div>
+
+<%= render "layouts/search_form"%>
+
+<% if @results.any? %>
+    <div class="card-wrapper">
+    <% @results.each do |result| %>
+      <div>
+          <a href="<%=product_path(result) %>">
+            <p><%= result.name %></p>
+            <p>Total Reviews: <%= result.reviews.count %></p>
+            <p><%= result.reviews.any? && "Average Review: #{result.calculate_average}" %></p>
+          </a>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No Results!</p>
+<% end %>

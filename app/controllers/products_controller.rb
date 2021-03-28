@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action except: %i[ index show ] do
+  before_action except: %i[ index show search ] do
     redirect_to products_path unless current_user&.admin
   end
 
@@ -31,6 +31,13 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     render :show
+  end
+
+  def search
+    @results = Product.where(
+      "LOWER(name) LIKE ?", '%' + params[:q].downcase + '%'
+    )
+    render :search
   end
 
   def create

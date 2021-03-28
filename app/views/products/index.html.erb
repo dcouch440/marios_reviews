@@ -8,6 +8,8 @@
   </div>
 <% end %>
 
+<%= render "layouts/search_form"%>
+
 <% if @products.any? %>
   <div class="card-wrapper">
     <% @products.each do |product| %>
