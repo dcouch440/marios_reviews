@@ -1,4 +1,4 @@
-# Mario's Reviews
+# `Mario's Reviews`
   
 ### An app for leaving reviews!
   
@@ -6,28 +6,35 @@
 #### 3/19/2021
 
 ***
+## `About this App`
+- This is a week 4-5 ` Ruby/Rails ` Epicodus school project.
+- This app uses postgresql to leave reviews for products.
+- Requirements for products include: Name, Cost, and Country of Origin.
+- Requirements for reviews include: Author, Content Body, Rating.
+- requirements for users include ownership of reviews, and admin roles for -crud functionality.
 
-This is a week 4-5 ` Ruby/Rails ` Epicodus school project.\
-This app uses postgresql to leave reviews for products.\
-Requirements for products include: Name, Cost, and Country of Origin.\
-Requirements for reviews include: Author, Content Body, Rating.\
-requirements for users include ownership of reviews, and admin roles for crud functionality.
 
+- User roles have the ability to add reviews which will query the server with the inputted info.
+
+- Full crud control is left in for admin users (selected through boolean).
+- Routes pertaining to these controls are locked unless authorizations are met.
 ***
 ### `Technology Used:`
 
 * Ruby `2.6.6`
 * Rails `5.2.0`
 * Html
-* Css
-* Flex Box
-* Css Grid
+* CSS - Grid - Flex
 * Embedded Ruby
 * PostgreSQL
 * Bundler
 * TDD (Test-driven development)
 * RSpec
 * capybara
+* faker
+* shoulda matcher
+* devise
+* puma
 * Pry
 * ByeBug
 * git
@@ -191,12 +198,18 @@ irb(main):001:0>
   Fallow along with error response instructions if things do not look right.
 
 ```
-
+***
 ## `Schema`
-<img src="public/img/schema_mario.PNG">
+<img src="app/assets/images/schema_mario.PNG">
   
+***
+## `Preview`
 
+This website is a highly stylized css website. currently optimized for desktop. viewable data is placeholder data set with a seeder (faker gem).
 
+<img src="app/assets/images/products.PNG">
+<img src="app/assets/images/productsview.PNG">
+<img src="app/assets/images/review.PNG">
   
 ***
 The MIT License (MIT)

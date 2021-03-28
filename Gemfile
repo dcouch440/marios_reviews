@@ -28,7 +28,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'devise'
-gem 'rails_admin', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -44,7 +43,6 @@ group :development, :test do
   gem 'faker'
   gem 'simplecov'
   gem 'capybara'
-  gem "factory_bot_rails"
 end
 
 group :development do
