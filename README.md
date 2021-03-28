@@ -126,7 +126,7 @@ Setup postgresql for rails
 * Start off by deleting your credentials.yml.enc file and master.key (within config folder) in order to generate another
 
 ```
-  For vs code users try
+  For vs code users try (within the terminal)
   EDITOR="code --wait" rails credentials:edit
 ```
 
