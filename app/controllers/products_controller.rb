@@ -14,15 +14,6 @@ class ProductsController < ApplicationController
     render :new
   end
 
-  def create
-    @product = Product.new(product_params)
-    if @product.save
-      redirect_to product_path
-    else
-      render :new
-    end
-  end
-
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
