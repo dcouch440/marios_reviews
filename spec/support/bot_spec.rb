@@ -10,6 +10,11 @@ context "bot module creates a bot in the db but returns usable passwords for tes
     expect(User.count).to eq 2
   end
 
+  it "deletes bots after every call" do
+    5.times { Bot.make }
+    expect(User.count).to eq 2
+  end
+
   it "creates a admin first" do
     expect(User.first.admin).to eq true
   end
