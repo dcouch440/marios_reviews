@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Hind+Madurai&display=swap');
+
 :root {
   --main-content-color: #F6AE2D;
   --global-float-shadow: 0px 5px 10px rgba(0, 0, 0, 0.322)
@@ -142,7 +143,6 @@ a:hover {
   background: var(--main-content-color);
 }
 
-
 /* review display */
 .wrapper-review {
   background: var(--main-content-color);
@@ -211,6 +211,7 @@ a:hover {
 .content-body-container {
   color: white;
 }
+
 /* search field */
 .search-field {
   padding: 0;
@@ -229,11 +230,13 @@ a:hover {
 .search-field button {
   font-weight: 900;
   padding: 8px 20px;
+  margin-left: 5px;
   border-radius: 10px;
   color: white;
   border: 2px solid white;
   background-color: black;
 }
+
 /* form container */
 .form-page {
   box-shadow: 0px 0px 5px black;
@@ -264,8 +267,11 @@ a:hover {
   border-radius: 20px;
   padding: 10px;
 }
+#sign-up form input {
+  background-color: white;
+}
 
-/* layout for default rails forms -review- */
+/* layout for default rails forms -review- + -shared animation, style- */
 .form form {
   width: 80%;
 }
@@ -293,19 +299,17 @@ form label {
   border-radius: 20px;
   padding: 10px;
 }
-.form form :is(input, textarea):focus,
-.field :is(input):focus,
-.search-field :is(input, button):focus {
-  padding: 10px;
+:is(.form form, .field, .search-field, .actions)
+:is(input, textarea, button):focus {
   outline: none;
   box-shadow: 0px 0px 0px 5px black;
-  border-radius: 20px;
 }
 form textarea {
   resize: none;
   height: 250px;
 }
-.form button, .actions input {
+.form :is(button),
+.actions input {
   font-weight: 900;
   padding: 10px 40px;
   border-radius: 20px;
@@ -313,9 +317,8 @@ form textarea {
   border: 5px solid white;
   background-color: black;
 }
-.form button:hover,
-.actions input:hover,
-.search-field button:hover {
+:is(.form, .search-field) :is(button):hover,
+:is(.actions, #sign-up form) :is(input):hover {
   cursor: pointer;
   background-color: white;
   box-shadow: inset 0px 0px 2px black;
@@ -331,6 +334,7 @@ form textarea {
     padding: 50px;
   }
 }
+
 /* navigation */
 .nav-link {
   width: 100%;
@@ -487,7 +491,7 @@ form textarea {
   height: 65vh;
   background-color: var(--main-content-color);
 }
-#review-author, #review-review{
+#review-author, #review-review {
   color: white;
   background-color: black;
   padding: 15px;
@@ -509,10 +513,3 @@ form textarea {
   font-size: 12px;
   justify-content: space-around;
 }
-
-
-
-
-
-
-
