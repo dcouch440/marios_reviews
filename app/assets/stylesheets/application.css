@@ -67,6 +67,9 @@ a {
 a:hover {
   color: goldenrod;
 }
+@media only screen and (max-width: 1300px) {
+  #page-container{ width: 100%; padding: 10px; }
+}
 
 /* titling */
 .titleize {
@@ -88,6 +91,9 @@ a:hover {
 .center-content {
   margin-left: 100%;
   margin-right: 100%;
+}
+@media only screen and (max-width: 1300px) {
+  #titleize{ font-family: 42px; }
 }
 
 /* card display for products */
@@ -121,7 +127,7 @@ a:hover {
   font-family: 'Chango', cursive;
   width: 100%;
   height: 100%;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   color: rgb(0, 0, 0);
   text-decoration: none;
@@ -211,6 +217,10 @@ a:hover {
 .content-body-container {
   color: white;
 }
+@media only screen and (max-width: 1300px) {
+  .author-container a {font-size: 18px;}
+  .rating-container {font-size: 16px;}
+}
 
 /* search field */
 .search-field {
@@ -224,7 +234,7 @@ a:hover {
   box-shadow: inset 0 0 3px black;
   border-radius: 18px;
   padding: 10px;
-  width: 300px;
+  width: 260px;
   border: 2px solid rgb(0, 0, 0);
 }
 .search-field button {
@@ -430,7 +440,7 @@ form textarea {
   flex-wrap: wrap;
   padding: 15px;
   justify-content: space-between;
-  font-size: 40px;
+  font-size: 28px;
   color: rgb(0, 0, 0);
 }
 .description > div {
