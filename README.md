@@ -39,7 +39,8 @@
 * ByeBug
 * git
 
-
+## `see this app now?`
+- Visit (https://enigmatic-mountain-44578.herokuapp.com/)
 ## `Installation :`
 ***
 * These instructions assume you have ruby, rails, & postgres installed
