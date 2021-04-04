@@ -33,6 +33,7 @@ gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -40,7 +41,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'pry'
-  gem 'faker'
   gem 'simplecov'
   gem 'capybara'
 end
